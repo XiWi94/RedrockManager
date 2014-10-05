@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">RedRockManager</string>
+    
+    <!-- hint -->
+    <string name="hint_login_user">请输入你的学号</string>
+    <string name="hint_login_password">请输入你的密码</string>
+
+    <!-- 组件上text -->
+    <string name="btn_login">登录</string>
+    <string name="btn_login_cancel">取消</string>
+    
+    
+    <!-- LoginActivity -->
+    <string name="toast_login_emptyhint">用户名或密码不能为空</string>
+    
+    <!-- MainActivity -->
+    	<!-- Drawer Menu -->
+    	<string name="text_default_user">游客</string>
+    <string-array name="drawer_item">
+        <item>"任务管理"</item>
+        <item>"交流空间"</item>
+        <item>"日程管理"</item>
+        <item>"人员管理"</item>
+        <item>"切换帐号"</item>
+        <item>"应用设置"</item>
+    </string-array>
+</resources>

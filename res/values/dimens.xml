@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 登陆界面前空白高度 -->
+    <dimen name="login_height">64dp</dimen>
+    
+    <!-- Navigetion Drawer -->
+    <dimen name="drawer_width">240dp</dimen>
+    <dimen name="drawer_divier_height">0dp</dimen>
+    <dimen name="drawer_user_info_height">72dp</dimen>
+    
+	<!-- 留白 -->
+	<dimen name="margin_side">16dp</dimen><!-- 组件最左边和最右边与父视图的距离 -->
+	<dimen name="margin_text">8dp</dimen><!-- 组件界面元素留白 -->
+	<dimen name="margin_above">4dp</dimen><!-- 如list为48dp，其中按钮之类上下的留白 -->
+	
+	<!-- 组件间距 -->
+	
+	<!-- 组件高度 -->
+	<dimen name="list_item_height">48dp</dimen>
+	
+	<!-- 字体大小 -->
+	<dimen name="font_size_micro">12sp</dimen>
+	<dimen name="font_size_small">14sp</dimen>
+	<dimen name="font_size_medium">18sp</dimen>
+	<dimen name="font_size_large">22sp</dimen>
+	
+	<!-- Launcher 48X48 
+	 Action Bar  32x32 dp  24x24 dp 
+	 Small / Contextual Icons, 16x16 dp 12x12 dp 
+	 Notification Icons  24x24 dp  22x22 dp-->
+</resources>
