@@ -1,6 +1,7 @@
 package com.mredrock.redrockmanager.launch;
 //TODO ListPopup没装 网络没弄 数据没弄 
 import android.app.Activity;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -13,7 +14,13 @@ import android.widget.ImageView;
 import android.widget.ListPopupWindow;
 import android.widget.Toast;
 
+import com.android.volley.Request.Method;
+import com.android.volley.Response.ErrorListener;
+import com.android.volley.Response.Listener;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.mredrock.redrockmanager.R;
+import com.mredrock.redrockmanager.app.MainApplication;
 import com.mredrock.redrockmanager.mode.login.UserInfo;
 
 public class LoginActivity extends Activity{
@@ -63,6 +70,7 @@ public class LoginActivity extends Activity{
 						@Override
 						public void onClick(View arg0) {
 							editUser.setText("");
+							editPassword.setText("");
 						}
 					});
 				}else{
@@ -79,7 +87,7 @@ public class LoginActivity extends Activity{
 				if(editPassword.isFocused()){
 					imgDelPassword.setVisibility(View.VISIBLE);
 					imgDelPassword.setOnClickListener(new OnClickListener() {
-						
+							
 						@Override
 						public void onClick(View arg0) {
 							editPassword.setText("");
@@ -129,7 +137,7 @@ public class LoginActivity extends Activity{
 							getResources().getString(R.string.toast_login_emptyhint), 
 							Toast.LENGTH_SHORT).show();
 				}else{
-					
+					requestFromNet();
 				}
 				
 			}
@@ -148,4 +156,36 @@ public class LoginActivity extends Activity{
 		switcherList.setAdapter(popupAdapter);
 	}
 
+	private String getUrl(){
+		Uri.Builder uriBuilder=Uri.parse(LoginBasic).buildUpon()
+				.appendQueryParameter("username", editUser.getText().toString())
+				.appendQueryParameter("userpsw", editPassword.getText().toString())
+				.appendQueryParameter("identity", Identity);
+		return uriBuilder.build().toString();
+	}
+	
+	private void requestFromNet(){
+//		StringRequest stringRequest=new StringRequest(Method.POST,getUrl(),new Listener<String>() {
+		final StringRequest stringRequest=new StringRequest(Method.POST,getUrl(),new Listener<String>() {
+			@Override
+			public void onResponse(String arg0) {
+				Toast.makeText(getApplicationContext(), arg0, Toast.LENGTH_LONG).show();
+//				Intent intent=new Intent()
+				
+			}
+		},new ErrorListener() {
+
+			@Override
+			public void onErrorResponse(VolleyError arg0) {
+				//TODO 保留stringRequest.getCacheKey()到sp中，学号为key, getCacheKey为值。把data放置到内容中，提示已过期，须联网
+//				byte[] data=MainApplication.requestManager.getRequestQueue().getCache().get(stringRequest.getCacheKey()).data;
+//				Toast.makeText(getApplicationContext(),new String(data) , Toast.LENGTH_SHORT).show();
+				
+			}
+		});
+		MainApplication.requestManager.addToRequestQueue(stringRequest);
+		
+	}
+	private final static String LoginBasic="http://202.202.43.87/Homework1.0/LoginDeal";
+	private final static String Identity="student";
 }
