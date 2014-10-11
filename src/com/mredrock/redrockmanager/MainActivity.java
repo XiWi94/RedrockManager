@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import com.mredrock.redrockmanager.app.MainApplication;
 import com.mredrock.redrockmanager.communezone.CommuneZoneFragment;
 import com.mredrock.redrockmanager.util.AppUtil;
 
 import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -69,11 +69,10 @@ public class MainActivity extends Activity {
 	private void setListener() {
 		
 		listView.setOnItemClickListener(new DrawerMenuListener(this,drawerLayout));
-		SharedPreferences sp=AppUtil.getPreferences(this);
 		
-		if(!sp.getString(AppUtil.keyIsFirstStart, "").equals("no")){
+		if(!MainApplication.sp.getString(AppUtil.KEYISFIRSTSTART, "").equals("no")){
 			drawerLayout.openDrawer(Gravity.START);
-			sp.edit().putString(AppUtil.keyIsFirstStart, "no").commit();
+			MainApplication.sp.edit().putString(AppUtil.KEYISFIRSTSTART, "no").commit();
 		}
 //		Toast.makeText(this,sp.getString(AppUtil.keyIsFirstStart, "") ,Toast.LENGTH_SHORT).show();
 		

@@ -29,6 +29,5 @@ public class LoginPreference {
 	}
 	public void setImgUrl(String imgUrl) {
 		this.imgUrl = imgUrl;
-	}
-	
+	}	
 }

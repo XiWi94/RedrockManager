@@ -14,7 +14,7 @@
 	<dimen name="margin_above">4dp</dimen><!-- 如list为48dp，其中按钮之类上下的留白 -->
 	
 	<!-- 组件间距 -->
-	
+	<dimen name="padding">8dp</dimen>	
 	<!-- 组件高度 -->
 	<dimen name="list_item_height">48dp</dimen>
 	

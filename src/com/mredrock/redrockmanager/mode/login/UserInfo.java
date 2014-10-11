@@ -9,7 +9,7 @@ public class UserInfo {
 	private String email;
 	private String QQ;
 	private String iconUrl;//TODO api上写的是icon .须更改。
-	private String password;
+
 	
 	public String getName() {
 		return name;
@@ -58,12 +58,6 @@ public class UserInfo {
 	}
 	public void setIconUrl(String iconUrl) {
 		this.iconUrl = iconUrl;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	
 	public class UserInfoResult extends Result{
