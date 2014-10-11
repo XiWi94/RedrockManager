@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/list_item_height"
+    android:orientation="horizontal" >
+
+    <TextView android:id="@+id/text_popup_id"
+        android:layout_width="0dp"
+        android:layout_weight="3" 
+        android:layout_height="match_parent"
+        android:gravity="left|center_vertical"
+        android:textSize="@dimen/font_size_medium"
+        android:paddingLeft="@dimen/padding"
+        />
+
+    <TextView android:id="@+id/text_popup_name"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:gravity="right|center_vertical"
+        android:textSize="@dimen/font_size_medium"
+        android:paddingRight="@dimen/padding"
+        />
+    
+    <ImageView android:id="@+id/icon_popup_del"
+        android:contentDescription="DEL"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_launcher"/>
+</LinearLayout>
