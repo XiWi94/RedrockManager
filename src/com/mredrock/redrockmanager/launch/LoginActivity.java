@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -34,6 +35,7 @@ import com.mredrock.redrockmanager.R;
 import com.mredrock.redrockmanager.app.MainApplication;
 import com.mredrock.redrockmanager.mode.login.LoginPreference;
 import com.mredrock.redrockmanager.util.AppUtil;
+import com.mredrock.redrockmanager.util.ResizedLayout;
 
 public class LoginActivity extends Activity{
 //	private static final String TAG="LoginActivity";
@@ -75,6 +77,9 @@ public class LoginActivity extends Activity{
 	}
 	
 	private void setListener() {
+
+		InputHandler handler=new InputHandler();
+		AppUtil.resizedLayout((ResizedLayout)findViewById(R.id.root_login), handler);
 		editUser.setOnFocusChangeListener(new OnFocusChangeListener() {
 			
 			@Override
@@ -116,8 +121,6 @@ public class LoginActivity extends Activity{
 			}
 		});
 		
-		
-		
 		btnCancel.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -140,6 +143,7 @@ public class LoginActivity extends Activity{
 				}, 100);
 			}
 		});
+		
 		switcherList.setOnItemClickListener(new OnItemClickListener() {
 			
 			@Override
@@ -322,6 +326,23 @@ public class LoginActivity extends Activity{
 		});
 		
 		MainApplication.requestManager.addToRequestQueue(iconRequest);
+	}
+
+	public class InputHandler extends Handler{
+
+		private int resize=1;
+		@Override
+		public void handleMessage(Message msg) {
+			if(msg.what==resize){
+				if(msg.arg1==AppUtil.RESIZEDBIG){
+					imgYours.setVisibility(imgYours.VISIBLE);
+				}else if(msg.arg1==AppUtil.RESIZEDSMALL){
+					imgYours.setVisibility(imgYours.GONE);
+				}
+			}
+			super.handleMessage(msg);
+		}
+		
 	}
 
 	private final static String LoginBasic="http://202.202.43.87/Homework1.0/LoginDeal";
