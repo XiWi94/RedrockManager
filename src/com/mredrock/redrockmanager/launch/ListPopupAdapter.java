@@ -71,11 +71,10 @@ public class ListPopupAdapter extends BaseAdapter{
 				if(position==0){
 					users=null;
 					MainApplication.sp.edit().putString(AppUtil.KEYACCOUNTS, "").commit();
+					MainApplication.sp.edit().putString(AppUtil.KEYACCOUNT, "").commit();
 					notifyDataSetChanged();
 				}else{
 					for(int i=position;i<users.length;i++){
-						
-						
 						users[position]=users[position+1];	
 					}
 					users=Arrays.copyOf(users, users.length-1);

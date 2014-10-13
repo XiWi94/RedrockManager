@@ -1,11 +1,15 @@
 package com.mredrock.redrockmanager.util;
 
+import android.animation.ValueAnimator;
+import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.mredrock.redrockmanager.util.ResizedLayout.ResizedListener;
 
@@ -16,6 +20,8 @@ public class AppUtil {
 	
 	public static final int RESIZEDBIG=1;
 	public static final int RESIZEDSMALL=2;
+	public static final int GONE=1;
+	public static final int VISIBLE=2;
 	
 	public static SharedPreferences getPreferences(Context context){
 //		Toast.makeText(context,context.getPackageName(),Toast.LENGTH_SHORT).show();
@@ -55,5 +61,22 @@ public class AppUtil {
 			}
 		});
 		
-	}	
+	}
+	
+	public static void iconAnimate(final View target,final int start,final int end){
+	    
+		ValueAnimator valueAnimator = ValueAnimator.ofInt(start,end );
+
+	    valueAnimator.addUpdateListener(new AnimatorUpdateListener() {  
+	  
+	    	@Override  
+	        public void onAnimationUpdate(ValueAnimator animator) {  
+	    		target.setLayoutParams(
+	    				new LayoutParams((int)animator.getAnimatedValue(), (int)animator.getAnimatedValue())
+	            	);
+	        }  
+	    });   
+	    valueAnimator.setDuration(250).start();  
+	}
+	
 }

@@ -1,6 +1,7 @@
 package com.mredrock.redrockmanager.launch;
-//TODO 离线使用 
+//TODO 离线使用
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
@@ -53,6 +55,8 @@ public class LoginActivity extends Activity{
 //	private ImageView imgDelListPopup;
 	private LoginPreference loginUser;
 	LoginPreference[] accounts;
+	int height;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -77,9 +81,34 @@ public class LoginActivity extends Activity{
 	}
 	
 	private void setListener() {
-
-		InputHandler handler=new InputHandler();
-		AppUtil.resizedLayout((ResizedLayout)findViewById(R.id.root_login), handler);
+		imgYours.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+			
+			@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+			@SuppressWarnings("deprecation")
+			@Override
+			public void onGlobalLayout() {
+				height=imgYours.getHeight();
+				InputHandler handler=new InputHandler(height);
+				AppUtil.resizedLayout((ResizedLayout)findViewById(R.id.root_login), handler);
+				if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN){
+					btnLogin.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+				}else{
+					btnLogin.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+				}
+			}
+		});
+		
+		//测量布局变化
+		ResizedLayout resizedLayout=(ResizedLayout)findViewById(R.id.root_login);
+		resizedLayout.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				arg0.requestFocus();
+				AppUtil.closeInputMethod(LoginActivity.this);
+			}
+		});
+		
 		editUser.setOnFocusChangeListener(new OnFocusChangeListener() {
 			
 			@Override
@@ -196,8 +225,10 @@ public class LoginActivity extends Activity{
 	}	
 
 	private void initData() {
-		
+		String jsonAccount=MainApplication.sp.getString(AppUtil.KEYACCOUNT, "");
 		String jsonAccounts=MainApplication.sp.getString(AppUtil.KEYACCOUNTS, "");
+		if(!jsonAccount.equals(""))
+			fillAccount(jsonAccount);
 		accounts=new Gson().fromJson(jsonAccounts, LoginPreference[].class);
 //		Log.i(TAG, new Gson().toJson(accounts));
 		popupAdapter=new ListPopupAdapter(this, accounts);
@@ -235,27 +266,13 @@ public class LoginActivity extends Activity{
 			public void onErrorResponse(VolleyError arg0) {
 				//TODO 离线情况未实现
 				//				byte[] data=MainApplication.requestManager.getRequestQueue().getCache().get(stringRequest.getCacheKey()).data;
-
 				Toast.makeText(LoginActivity.this, arg0.getMessage(), Toast.LENGTH_LONG).show();
 			}
 		});
-		ImageRequest imageRequest=new ImageRequest(getImageUrl(), new Listener<Bitmap>() {
 
-			@Override
-			public void onResponse(Bitmap arg0) {				
-				imgYours.setImageBitmap(arg0);
-			}
-		}, 0, 0, null, new ErrorListener() {
-
-			@Override
-			public void onErrorResponse(VolleyError arg0) {
-				imgYours.setImageResource(R.drawable.ic_launcher);
-				
-			}
-		});
-		
+		getImageViewChanged(getImageUrl());		
 		MainApplication.requestManager.addToRequestQueue(stringRequest);
-		MainApplication.requestManager.addToRequestQueue(imageRequest);
+
 	}
 	
 	private synchronized void handleLoginResponse(String response){
@@ -274,6 +291,13 @@ public class LoginActivity extends Activity{
 			Toast.makeText(this,getResources().getString(R.string.toast_login_neterror), Toast.LENGTH_SHORT).show();
 		}
 		
+	}
+	
+	private void fillAccount(String jsonAccount){
+		LoginPreference loginPreference=new Gson().fromJson(jsonAccount, LoginPreference.class);
+		editUser.setText(loginPreference.getUserId());
+		editPassword.setText(loginPreference.getPassword());
+		getImageViewChanged(getImageUrl());
 	}
 	
 	private  synchronized void saveData(){
@@ -328,24 +352,34 @@ public class LoginActivity extends Activity{
 		MainApplication.requestManager.addToRequestQueue(iconRequest);
 	}
 
+	@SuppressLint("HandlerLeak")
 	public class InputHandler extends Handler{
+		int height;
+		public InputHandler(int height){
+			this.height=height;
+		}
 
 		private int resize=1;
 		@Override
 		public void handleMessage(Message msg) {
+			
 			if(msg.what==resize){
+				
 				if(msg.arg1==AppUtil.RESIZEDBIG){
-					imgYours.setVisibility(imgYours.VISIBLE);
+					Log.i("test", "cao");
+					AppUtil.iconAnimate(imgYours, 0, height);			
+//					imgYours.setVisibility(imgYours.VISIBLE);
 				}else if(msg.arg1==AppUtil.RESIZEDSMALL){
-					imgYours.setVisibility(imgYours.GONE);
+					Log.i("test", "cao");
+					AppUtil.iconAnimate(imgYours, height, 0);
+//					imgYours.setVisibility(imgYours.GONE);
 				}
+				super.handleMessage(msg);
 			}
-			super.handleMessage(msg);
 		}
-		
 	}
 
-	private final static String LoginBasic="http://202.202.43.87/Homework1.0/LoginDeal";
+	private final static String LoginBasic="http://202.202.43.87/Homework2.0/LoginDeal";
 	private final static String Identity="student";
 //	private final static int ACCOUNTNUM=10;
 }
