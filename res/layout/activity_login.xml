@@ -35,7 +35,7 @@
 		    android:layout_margin="@dimen/margin_text"
 		    android:contentDescription="YOUR ICON"
 			 android:layout_gravity="center_horizontal"
-			 android:src="@drawable/ic_launcher"/>
+			 android:src="@drawable/ic_logo"/>
 		
 		<LinearLayout android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
 			<ImageView android:id="@+id/icon_login_delete_user"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/ic_launcher"
+			    android:src="@drawable/ic_action_remove"
 			    android:layout_gravity="right"
 			    android:contentDescription="DELETE"
 			    android:visibility="invisible"/>
@@ -63,7 +63,7 @@
 			<ImageView android:id="@+id/icon_login_switcher"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@drawable/ic_launcher"
+			    android:src="@drawable/ic_action_expand"
 			    android:contentDescription="SWITCH USER"/>    
 		</LinearLayout>
 		
@@ -87,7 +87,7 @@
 			<ImageView android:id="@+id/icon_login_delete_psw"
 				    android:layout_width="wrap_content"
 				    android:layout_height="wrap_content"
-				    android:src="@drawable/ic_launcher"
+				    android:src="@drawable/ic_action_remove"
 				    android:layout_gravity="right"
 				    android:contentDescription="DELETE"
 				    android:visibility="invisible"/>    

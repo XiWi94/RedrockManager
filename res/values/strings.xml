@@ -3,29 +3,70 @@
 
     <string name="app_name">RedRockManager</string>
     
-    <!-- hint -->
-    <string name="hint_login_user">请输入你的学号</string>
-    <string name="hint_login_password">请输入你的密码</string>
-
-    <!-- 组件上text -->
-    <string name="btn_login">登录</string>
-    <string name="btn_login_cancel">取消</string>
-    
-    
     <!-- LoginActivity -->
     <string name="toast_login_emptyhint">用户名或密码不能为空</string>
 	 <string name="toast_login_usererror">用户名输入错误</string>
     <string name="toast_login_pswerror">密码输入错误</string>
     <string name="toast_login_neterror">网络异常</string>
-    <!-- MainActivity -->
-    	<!-- Drawer Menu -->
-    	<string name="text_default_user">游客</string>
-    <string-array name="drawer_item">
-        <item>"任务管理"</item>
-        <item>"交流空间"</item>
-        <item>"日程管理"</item>
-        <item>"人员管理"</item>
-        <item>"切换帐号"</item>
-        <item>"应用设置"</item>
-    </string-array>
+		    <!-- hint -->
+		    <string name="hint_login_user">请输入你的学号</string>
+		    <string name="hint_login_password">请输入你的密码</string>
+		
+		    <!-- 组件上text -->
+		    <string name="btn_login">登录</string>
+		    <string name="btn_login_cancel">取消</string>
+		    
+    <!-- MainActivity -->    	
+		    	<!-- Drawer Menu -->
+		    	<string name="text_default_user">游客</string>
+		    <string-array name="drawer_item">
+		        <item>"任务管理"</item>
+		        <item>"交流空间"</item>
+		        <item>"日程管理"</item>
+		        <item>"人员管理"</item>
+		        <item>"切换帐号"</item>
+		        <item>"应用设置"</item>
+		    </string-array>
+		    <!-- Action Bar -->
+		    <string-array name="actionbar_frag">
+		        <item>"个人资料"</item>
+		        <item>"任务管理"</item>
+		        <item>"交流空间"</item>
+		        <item>"日程管理"</item>
+		        <item>"人员管理"</item>
+		        <item>"应用设置"</item>
+		    </string-array>
+		    <!-- Menu title -->
+		    <string name="menu_search">"搜索"</string>
+			<string name="menu_edit">编辑</string>
+		    <!-- Task Fragment -->
+		        	<!-- actionbar menu -->
+			    	<string name="menu_task_mypush">历史</string>
+			    	<string name="menu_task_gotnotify">通知</string>
+			    	<string name="menu_task_push">推送</string>
+					    
+    <!-- Jpush activity -->
+		<string name="hint_title">标题：</string>
+		<string name="hint_content">发布具体内容</string>
+		<string name="rbtn_jpush_notify">会议通知</string>
+		<string name="rbtn_jpush_assignment">作业通知</string>
+		<string name="rbtn_jpush_class">上课通知</string>
+
+
+    <!-- test -->
+    <string name="hint_range">请选择通知群体：</string>
+<string name="hint_notify_type">....</string>
+<string-array name="push_tag">
+<item>站长团</item>
+<item>部长</item>
+<item>干事</item>
+<item>学员</item>
+</string-array>
+<string-array name="range">
+<item>本部门学员</item>
+<item>站长团</item>
+<item>各部门部长</item>
+<item>干事及以上</item>
+<item>红岩全体人员</item>
+</string-array>
 </resources>

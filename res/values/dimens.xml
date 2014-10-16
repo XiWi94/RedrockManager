@@ -15,6 +15,7 @@
 	
 	<!-- 组件间距 -->
 	<dimen name="padding">8dp</dimen>	
+
 	<!-- 组件高度 -->
 	<dimen name="list_item_height">48dp</dimen>
 	
@@ -23,6 +24,7 @@
 	<dimen name="font_size_small">14sp</dimen>
 	<dimen name="font_size_medium">18sp</dimen>
 	<dimen name="font_size_large">22sp</dimen>
+	
 	
 	<!-- Launcher 48X48 
 	 Action Bar  32x32 dp  24x24 dp 

@@ -84,4 +84,13 @@ public class DrawerMenuListener implements OnItemClickListener{
 		fragmentList.add(fragment);
 
 	}
+	
+	public final static int USERINFO=0;
+	public final static int TASKMANA=1;
+	public final static int COMMUNEZ=2;
+	public final static int DAILYMAN=3;
+	public final static int PERSONMA=4;
+	public final static int SETTING =5;
+	
+	
 }

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnFocusChangeListener;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -61,6 +62,7 @@ public class LoginActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
 		initView();
 		setListener();
@@ -121,7 +123,7 @@ public class LoginActivity extends Activity{
 						public void onClick(View arg0) {
 							editUser.setText("");
 							editPassword.setText("");
-							imgYours.setImageResource(R.drawable.ic_launcher);
+							imgYours.setImageResource(R.drawable.ic_logo);
 						}
 					});
 				}else{
@@ -344,7 +346,7 @@ public class LoginActivity extends Activity{
 
 			@Override
 			public void onErrorResponse(VolleyError arg0) {
-				imgYours.setImageResource(R.drawable.ic_launcher);
+				imgYours.setImageResource(R.drawable.ic_logo);
 				
 			}
 		});
