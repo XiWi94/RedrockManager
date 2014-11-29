@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,8 +24,10 @@ public class DrawerMenuListener implements OnItemClickListener{
 
 	private Activity context;
 	private DrawerLayout drawerLayout;
-	private ArrayList<Fragment> fragmentList;
-	
+	public ArrayList<Fragment> fragmentList;
+/** 
+ * 定义点击DrawerMenu的监听
+ * */	
 	public DrawerMenuListener(Activity context,DrawerLayout drawerLayout){
 		this.context=context;
 		this.drawerLayout=drawerLayout;
@@ -35,29 +38,31 @@ public class DrawerMenuListener implements OnItemClickListener{
 	@Override
 	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 //		Toast.makeText(context,arg2+"", Toast.LENGTH_SHORT).show();
+		context.invalidateOptionsMenu();
+		Log.i("Main", "invail");
 		FragmentManager fm=context.getFragmentManager();
 		switch(arg2){
-		case 0:
-			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(0)).commit();
+		case USERINFO:
+			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(USERINFO)).commit();
 			break;
-		case 1:
-			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(1)).commit();
+		case TASKMANA:
+			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(TASKMANA)).commit();
 		 	break;
-		case 2:
-			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(2)).commit();
+		case COMMUNEZ:
+			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(COMMUNEZ)).commit();
 			break;
-		case 3:
-			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(3)).commit();
+		case DAILYMAN:
+			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(DAILYMAN)).commit();
 			break;
-		case 4:
-			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(4)).commit();
+		case PERSONMA:
+			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(PERSONMA)).commit();
 			break;
-		case 5:
+		case SETTING:
 			Intent intent=new Intent(context,LoginActivity.class);
 			context.startActivity(intent);
 			break;
-		case 6:
-			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(5)).commit();
+		case SETTING+1:
+			fm.beginTransaction().replace(R.id.layout_content, fragmentList.get(SETTING)).commit();
 			break;
 		}
 		drawerLayout.closeDrawer(Gravity.START);

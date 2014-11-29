@@ -5,13 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -20,14 +17,17 @@ import com.mredrock.redrockmanager.app.MainApplication;
 import com.mredrock.redrockmanager.communezone.CommuneZoneFragment;
 import com.mredrock.redrockmanager.util.AppUtil;
 //TODO 当进入其他activity，保存此时位于第几个fragment,返回时直接退到该fragment。如果默认没有对应模块的fragment,如登录，就返回默认的fragment.
-public class MainActivity extends Activity implements ActBarChangeInterface{
-	private final static String TAG="MainActivity";
-	
+public class MainActivity extends Activity{
+//	private final static String TAG="MainActivity";
+	//TODO 
 	private final static int[] drawableId={R.drawable.ic_action_event,R.drawable.menu_home,R.drawable.menu_calendar,R.drawable.menu_profile,R.drawable.ic_logo,R.drawable.menu_settings};
 	private DrawerLayout drawerLayout;
+	
 	private ListView listView;
-	private MenuItem  menuItemSearch;
-	private MenuItem  menuItemEdit;
+	private FragmentManager fm;
+	private DrawerMenuListener drawerListener;
+	int flag=DrawerMenuListener.COMMUNEZ;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,6 +41,7 @@ public class MainActivity extends Activity implements ActBarChangeInterface{
 	private void initView() {
 		drawerLayout=(DrawerLayout)findViewById(R.id.layout_drawer);
 		listView=(ListView)findViewById(R.id.list_menu);
+		fm=getFragmentManager();
 	}
 	
 	private void setAdapter() {
@@ -53,12 +54,11 @@ public class MainActivity extends Activity implements ActBarChangeInterface{
 	}
 
 	private void initFragment(){
-		this.getFragmentManager().beginTransaction().replace(R.id.layout_content, new CommuneZoneFragment()).commit();
+		fm.beginTransaction().replace(R.id.layout_content, new CommuneZoneFragment()).commit();
 	}
 	
 	private List<HashMap<String, Object>> getData() {
 		String[] textItem=getResources().getStringArray(R.array.drawer_item);
-		actionTitle=getResources().getStringArray(R.array.actionbar_frag);
 		
 		List<HashMap<String, Object>> list=new ArrayList<HashMap<String,Object>>();
 		HashMap<String, Object> map;
@@ -78,8 +78,8 @@ public class MainActivity extends Activity implements ActBarChangeInterface{
 	}
 	
 	private void setListener() {
-		
-		listView.setOnItemClickListener(new DrawerMenuListener(this,drawerLayout));
+		drawerListener=new DrawerMenuListener(this,drawerLayout);
+		listView.setOnItemClickListener(drawerListener);
 		
 		if(!MainApplication.sp.getString(AppUtil.KEYISFIRSTSTART, "").equals("no")){
 			drawerLayout.openDrawer(Gravity.START);
@@ -88,41 +88,4 @@ public class MainActivity extends Activity implements ActBarChangeInterface{
 //		Toast.makeText(this,sp.getString(AppUtil.keyIsFirstStart, "") ,Toast.LENGTH_SHORT).show();
 		
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		
-		Log.i(TAG,"menu");
-		MenuInflater mInflater=getMenuInflater();
-		mInflater.inflate(R.menu.menu_taskmanage, menu);
-		menuItemSearch=menu.getItem(0);
-		menuItemEdit=menu.getItem(1);
-		return true;
-	}
-
-	
-	@Override
-	public void changeActionBar(int flag) {
-//		Toast.makeText(this, flag+"", Toast.LENGTH_SHORT).show();
-//TODO 目前没找到方法去修改action bar 里的menu item.
-		getActionBar().setTitle(actionTitle[flag]+"");
-		if(menuItemSearch!=null){
-			if(flag==DrawerMenuListener.PERSONMA||flag==DrawerMenuListener.DAILYMAN){
-				menuItemSearch.setVisible(true);
-			}else{
-				menuItemSearch.setVisible(false);
-			}	
-		}
-		if(menuItemEdit!=null){
-			if(flag==DrawerMenuListener.USERINFO){
-				menuItemEdit.setVisible(true);
-			}else{
-				menuItemEdit.setVisible(false);
-			}	
-		}
-		Log.i(TAG,"bar"+flag);
-	}
-	
-	private String[] actionTitle;
-	
 }

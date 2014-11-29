@@ -1,21 +1,21 @@
-package com.mredrock.redrockmanager.communezone;
+package com.mredrock.redrockmanager.taskmanage;
+
 import com.mredrock.redrockmanager.R;
+
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class CommuneZoneFragment extends Fragment{
+public class TaskPushedFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_communezone, container, false);
+		// TODO Auto-generated method stub
+		return inflater.inflate(R.layout.frag_task_pushed, container,false);
 	}
 
-
+	
 }

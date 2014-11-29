@@ -74,20 +74,14 @@
      	android:layout_marginBottom="@dimen/margin_above"
      	android:layout_height="@dimen/list_item_height"
      	android:orientation="horizontal" >
-
-         <Spinner 
-         	android:layout_marginLeft="@dimen/margin_side"
-         	android:layout_marginRight="@dimen/margin_text"
-         	 android:layout_gravity="center_vertical"
-         	 android:id="@+id/sp_range"
-             android:layout_width="0dp"
-             android:layout_weight="3"
-             android:layout_height="48dp"
-             android:popupBackground="#333333"
-             android:dropDownWidth="fill_parent"
-             android:background="@drawable/shape_linear">
-           </Spinner>
-        
+        	<TextView android:id="@+id/tv_jpush_range"
+        	    android:layout_width="0dp"
+        	    android:layout_weight="3"
+        	    android:layout_height="@dimen/list_item_height"
+        	    android:layout_marginLeft="@dimen/margin_side"
+        	    android:gravity="center"
+        	    android:clickable="true"/>
+         
          <ImageView 
              android:layout_marginRight="@dimen/margin_side"
          	 android:id="@+id/btn_publish"

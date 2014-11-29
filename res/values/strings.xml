@@ -3,7 +3,7 @@
 
     <string name="app_name">RedRockManager</string>
     
-    <!-- LoginActivity -->
+    <!-- ******************LoginActivity *****************************************-->
     <string name="toast_login_emptyhint">用户名或密码不能为空</string>
 	 <string name="toast_login_usererror">用户名输入错误</string>
     <string name="toast_login_pswerror">密码输入错误</string>
@@ -16,7 +16,7 @@
 		    <string name="btn_login">登录</string>
 		    <string name="btn_login_cancel">取消</string>
 		    
-    <!-- MainActivity -->    	
+    <!-- ***********************MainActivity ************************-->    	
 		    	<!-- Drawer Menu -->
 		    	<string name="text_default_user">游客</string>
 		    <string-array name="drawer_item">
@@ -27,31 +27,31 @@
 		        <item>"切换帐号"</item>
 		        <item>"应用设置"</item>
 		    </string-array>
-		    <!-- Action Bar -->
-		    <string-array name="actionbar_frag">
-		        <item>"个人资料"</item>
-		        <item>"任务管理"</item>
-		        <item>"交流空间"</item>
-		        <item>"日程管理"</item>
-		        <item>"人员管理"</item>
-		        <item>"应用设置"</item>
-		    </string-array>
-		    <!-- Menu title -->
+
+		    		    <!-- Menu title -->
 		    <string name="menu_search">"搜索"</string>
-			<string name="menu_edit">编辑</string>
-		    <!-- Task Fragment -->
+			 <string name="menu_edit">编辑</string>
+			 <string name="menu_received">通知历史</string>
+			 <string name="menu_pushed">推送历史</string>
+			 <string name="menu_jpush">推送</string>
+			 <string name="menu_daily_add">新建事务</string>
+			 <string name="menu_colleague">同事</string>
+			 <string name="menu_student">学员</string>
+					    <!-- Task Fragment -->
 		        	<!-- actionbar menu -->
 			    	<string name="menu_task_mypush">历史</string>
 			    	<string name="menu_task_gotnotify">通知</string>
 			    	<string name="menu_task_push">推送</string>
 					    
-    <!-- Jpush activity -->
+   
+	   <!--********************** Jpush activity **********************-->
 		<string name="hint_title">标题：</string>
 		<string name="hint_content">发布具体内容</string>
 		<string name="rbtn_jpush_notify">会议通知</string>
 		<string name="rbtn_jpush_assignment">作业通知</string>
 		<string name="rbtn_jpush_class">上课通知</string>
 
+		
 
     <!-- test -->
     <string name="hint_range">请选择通知群体：</string>

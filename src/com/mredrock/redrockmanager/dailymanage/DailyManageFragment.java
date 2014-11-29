@@ -1,36 +1,41 @@
 package com.mredrock.redrockmanager.dailymanage;
 
-import com.mredrock.redrockmanager.ActBarChangeInterface;
-import com.mredrock.redrockmanager.DrawerMenuListener;
 import com.mredrock.redrockmanager.R;
-
-import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class DailyManageFragment extends Fragment{
-	private ActBarChangeInterface aInterface;
-	
-	@Override
-	public void onActivityCreated(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
-		super.onActivityCreated(savedInstanceState);
-	}
-
-	@Override
-	public void onAttach(Activity activity) {
-		aInterface=(ActBarChangeInterface)activity;
-		super.onAttach(activity);
-	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		aInterface.changeActionBar(DrawerMenuListener.DAILYMAN);
+		setHasOptionsMenu(true);
 		return inflater.inflate(R.layout.fragment_dailymanage, container, false);
+	}
+
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		
+		inflater.inflate(R.menu.menu_dailymanage, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int itemId=item.getItemId();
+		if(itemId==R.id.menu_daily_add){
+			
+		}else if(itemId==R.id.menu_daily_search){
+			
+		}else{
+			//null
+		}
+		return super.onOptionsItemSelected(item);
 	}
 	
 }
